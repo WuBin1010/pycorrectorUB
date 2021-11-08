@@ -5,6 +5,7 @@ contact: 907304@qq.com
 
 
 pycorrector的纠错过程：
+
 1，白名单纠错。在data/custom_confusion.txt中配置。命中就直接取词典的正确词。
 
 2，分词词纠错。jieba分词后，未登录词加入疑似错误词典   （用过滤规则+词典（包含切词词典及自定义词典）判断未登录词），然后使用同音字等规则取候选词（首选保留词的第一个字，后面的字取同音字）。
@@ -18,6 +19,7 @@ pycorrector的纠错过程：
 
 
 pycorrectorUB的主要修改点：
+
 1， 原代码中如果句子中包含白名单的词就纠错，不做分词进行匹配。这样做不合理，应该先分词，不然会误纠错，已发现多个误纠错的badcase。但是，先分词也有可能因为分词不正确，无法匹配到白名单。经测试，总体来说增加分词利大于弊。
 pycorrectorUB/corrector.py中增加配置参数：segment_word_confusion 默认为True，先进行分词。
 badcase：
